@@ -1,0 +1,18 @@
+schema = "conductor/repo/1"
+
+[project]
+name = "eventualaffinetraceresidue"
+libs = ["EventualAffineTraceResidue"]
+
+[scopes]
+challenge = ["Challenge.lean"]
+excluded = ["Targets/**"]
+
+[files]
+never_edit = ["Challenge.lean", "Solution.lean", "lakefile.toml", "lean-toolchain"]
+
+[streams.A]
+owned = ["EventualAffineTraceResidue.lean", "EventualAffineTraceResidue/**"]
+
+[records]
+names = ["EventualAffineTraceResidue.trace_residue_eventually_affine"]

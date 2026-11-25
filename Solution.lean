@@ -6,7 +6,7 @@ Authors: benkeene
 module
 
 public import Mathlib
-import EventualAffineTraceResidue
+public import EventualAffineTraceResidue
 
 /-!
 # Eventual affine trace residue in shifted numerical semigroups: proofs of the statements of record
