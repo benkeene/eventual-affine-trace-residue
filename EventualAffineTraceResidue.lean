@@ -6,3 +6,4 @@ Authors: benkeene
 module
 
 public import EventualAffineTraceResidue.Basic
+public import EventualAffineTraceResidue.Plan
