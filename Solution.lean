@@ -11,9 +11,10 @@ public import EventualAffineTraceResidue
 /-!
 # Eventual affine trace residue in shifted numerical semigroups: proofs of the statements of record
 
-The definitions and statements of `Challenge.lean`, restated verbatim and proved. This module does not
-import `Challenge`; the comparator checks that the statements and the definitions they use agree with
-`Challenge.lean`. Restate the definitions of `Challenge.lean` above the theorems.
+The statements of `Challenge.lean`, stated again verbatim and proved. This module does not import
+`Challenge`. The definitions the statements use are not repeated here: they are those of
+`EventualAffineTraceResidue/Basic.lean`, which have the same text as the definitions of `Challenge.lean`;
+the comparator checks that the statements and the definitions they use agree with `Challenge.lean`.
 -/
 
 @[expose] public section

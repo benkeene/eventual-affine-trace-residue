@@ -9,7 +9,9 @@ TODO (author): two or three sentences on what is proved. Status statements must 
 
 - `Challenge.lean` — statements of record (Mathlib-only imports, deliberate `sorry`s). The record section is
   rendered from `records.yaml`.
-- `Solution.lean` — restates the definitions and proves each statement of record; does not import `Challenge`.
+- `Solution.lean` — states each statement of record again and proves it; does not import `Challenge`. The
+  definitions are not repeated there: they are in `EventualAffineTraceResidue/Basic.lean`, with the same text as
+  in `Challenge.lean`, and the comparator checks that the two sides agree.
 - `EventualAffineTraceResidue/` — the development library.
 - `records.yaml` — the ordered list of statements of record; `comparator.json` and `formalization.yaml`
   (`status.main_results`, `alignment.statements`) are rendered from it.
