@@ -50,9 +50,10 @@ the affine formula with its explicit slope and threshold (`Plan.explicit_affine`
 cardinality of the pseudo-Frobenius set, i.e. the type (`Plan.eventual_type`, Remark 3), the eventual
 criterion for the nearly Gorenstein property (`Plan.nearly_gorenstein`, Remark 4) and the criterion for an
 eventually constant residue (`Plan.constant_iff`). The development works with k ≥ 1 (PROOF.md §8 Remark 1);
-the record keeps the hypothesis k ≥ 2 of CLAIM.md. Not formalized at all: the eventual quasi-polynomiality
-with period dividing w/d over the whole shifted family (Remark 2), the profile-count extension and its
-counterexample, and the other remarks of PROOF.md §8. The record also does not state that H_λ is a
+the record keeps the hypothesis k ≥ 2 of CLAIM.md. Remark 5 of PROOF.md §8 is `Plan.constant_iff`,
+and Remark 8 (Φ_P is never empty) is proved as `Plan.phiP_nonempty`. Not formalized at all: Remark 2 (eventual quasi-polynomiality with
+period dividing w/d over the whole shifted family), Remark 6 (the illustration by hand) and Remark 7 (the
+profile-count extension and its counterexample). The record also does not state that H_λ is a
 numerical semigroup (PROOF.md Lemma 1(b)); this is a fact about the definitions, not a hypothesis of the
 record.
 The record section below is generated from `records.yaml` by `conductor package render`; its order is the
