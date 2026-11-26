@@ -1,8 +1,9 @@
 # Correspondence: informal statements ↔ formal statements
 
-Status: TODO (author). One paragraph: what is proved, at which commit, which checks have run (each one is a
-row of "Build and audit record" below). Nothing in this file may describe a build, count or check except by
-quoting the command and its output.
+Status: the one statement of record, `EventualAffineTraceResidue.trace_residue_eventually_affine`, is proved in
+`Solution.lean` from the development in `EventualAffineTraceResidue/Plan.lean`. The checks that have run, each with
+its command, the commit it ran on and its output, are the rows of "Build and audit record" (§8); this paragraph adds
+nothing to them.
 
 ## 1. Informal statements and status
 

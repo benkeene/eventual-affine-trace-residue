@@ -28,7 +28,8 @@ Modelling choices.
   `StrictMono r` and `r (Fin.last k) = w` are not built in here; they are hypotheses of the record.
 * The shift parameter `λ` is the integer `l` (`λ` is reserved syntax in Lean).
 * The carrier is `ℤ`, not `ℕ`, so that pseudo-Frobenius numbers (non-elements, possibly negative) live in
-  the same type. For `l ≥ 0`, `n > 0` and `0 ≤ r_i` every generator is positive, so this submonoid consists
+  the same type. Under the record's hypotheses `0 = r_0 < ... < r_k = w` give `0 ≤ r_i` and `0 < w`, so for `l ≥ 0` and
+  `n > 0` every generator `n + l * w + r i` is positive, and this submonoid consists
   of nonnegative integers and is exactly the informal `H_λ`; it contains `0` (the empty sum), as a
   numerical semigroup does. For negative `l` the definition still makes sense, but the record only
   evaluates it at `l ≥ L ≥ 0`. -/
