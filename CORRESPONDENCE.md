@@ -134,11 +134,18 @@ commit, from run.json (`conductor formalize correspondence`); edit the run, not 
 
 ## 8. Build and audit record
 
-Every row is a quoted command output: the exact command, the commit it ran on, and its output (exit code and
-the decisive lines) copied verbatim. A row that paraphrases an outcome is not allowed; a check that was not run
-is a row with outcome `NOT RUN`. A row whose command cell reads "(no command: the judge's verdict file)" quotes
-the verdict file that conductor's judge wrote for that round, after it ran the commands of the rows at the same
-commit; it is not itself a command.
+Every row names a command that was run, the commit it ran on, and what came back. The output cell starts with
+the exit code. What follows it is one of three things, and the cell shows which:
+
+- lines copied verbatim from the command's output (the decisive lines, not the whole output), followed by the
+  quote file they were copied from;
+- in square brackets, a description of an output too large to quote: its size, its sha256 and where it was kept;
+- for a row whose command cell reads "(no command: the judge's verdict file)", a summary of fields of the
+  verdict file that conductor's judge wrote for that round after it ran the commands of the rows at the same
+  commit. That cell is a summary of a JSON file, not a quotation, and the row is not a command.
+
+No row describes an outcome that is not in the output or file it names; a check that was not run is a row with
+outcome `NOT RUN`.
 
 The rows record what was run on the machine that produced this repository; they are a record, not a recipe.
 Paths under a cache or run directory, and the quote files named with their sha256, belong to that machine's
@@ -146,8 +153,21 @@ run directory and are not part of this repository. The commit of a row is the co
 commit that changes no Lean source, lakefile, toolchain or manifest has the same Lean inputs. To check the
 repository yourself, run `lake build` and the comparator configuration `comparator.json` at the commit you have.
 
-| date | command | commit | quoted output |
+| date | command | commit | output |
 |---|---|---|---|
+| 2026-11-27 | `lake build` (lake build) | 0faaeee73a0f | exit code 0: Build completed successfully (8966 jobs). (quote `003-lake-build.txt` sha256 a78d78901d1e9491fa18325ddcb201db02787c6003a014f724b8961508244594) |
+| 2026-11-27 | `lake build Challenge EventualAffineTraceResidue EventualAffineTraceResidue.Basic EventualAffineTraceResidue.Plan Solution` (lake build) | 0faaeee73a0f | exit code 0: Build completed successfully (8966 jobs). (quote `004-lake-build-modules.txt` sha256 7d87cf8383b3dcbdc109a6bd4918a0cfc29dc6a160ddede3c00ebb7281f71429) |
+| 2026-11-27 | `lake env lean --json /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/sweep-solution.lean` (AxiomAudit (axiom sweep)) | 0faaeee73a0f | exit code 0: SWEEP 218 constants checked, 0 flagged (quote `005-sweep-solution.txt` sha256 b3dd3d7e1fa1830fd1f0d1ea10decce7d5ff9211a7e709eddc25d76ae95b239b) |
+| 2026-11-27 | `lake env lean --json /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/sweep-challenge.lean` (AxiomAudit (axiom sweep)) | 0faaeee73a0f | exit code 0: BAD_AXIOMS EventualAffineTraceResidue.trace_residue_eventually_affine in Challenge : [sorryAx] ⏎ SWEEP 5 constants checked, 1 flagged (expected: the record bodies of Challenge.lean are deliberate `sorry`) (quote `006-sweep-challenge.txt` sha256 cfe1f89fc40183c8114952a5acb655e3bfc658c38497b23c833a6282fe286f6f) |
+| 2026-11-27 | `lake env leanchecker Challenge` (leanchecker) | 0faaeee73a0f | exit code 0: (no output) (quote `008-leanchecker-Challenge.txt` sha256 f2ca6a47365fdf28562f761fc052ae5e471d7bbd0130390e1fd5d98c021e38c8) |
+| 2026-11-27 | `lake env leanchecker Solution` (leanchecker) | 0faaeee73a0f | exit code 0: (no output) (quote `007-leanchecker-Solution.txt` sha256 c5e0b8257ede44cecc611faddd522f66522572c6adb9c278e214f42ba5ae6ded) |
+| 2026-11-27 | `lake env leanchecker EventualAffineTraceResidue.Basic` (leanchecker) | 0faaeee73a0f | exit code 0: (no output) (quote `009-leanchecker-EventualAffineTraceResidue.Basic.txt` sha256 5b1477bcb13afa2d009fe9d3631819c5d8c7399100b8560104daa741b9225b09) |
+| 2026-11-27 | `lake env leanchecker EventualAffineTraceResidue.Plan` (leanchecker) | 0faaeee73a0f | exit code 0: (no output) (quote `010-leanchecker-EventualAffineTraceResidue.Plan.txt` sha256 508238f79c5a461a163d54fedf8cd36bd09dc9146403a1eeb6aa12f02ef37297) |
+| 2026-11-27 | `lake build --no-build Challenge Solution` (statement fidelity (Challenge = Solution)) | 0faaeee73a0f | exit code 0: All targets up-to-date (8965 jobs). (quote `013-fidelity.txt` sha256 13583e8943c12be9cbf9a59d144d5bac8246fe0e919e371f425624dcac4d0458) |
+| 2026-11-27 | `lake env leanexport Challenge -- Quot Quot.mk Quot.lift Quot.ind EventualAffineTraceResidue.trace_residue_eventually_affine propext Classical.choice Quot.sound Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam` (statement fidelity (Challenge = Solution)) | 0faaeee73a0f | exit code 0: [25255101 bytes, sha256 25e41584c99f3a57d746be7aedee46edb886bb72556a736f54211a5d256ebb47, kept at /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/fidelity/challenge.ndjson] (quote `014-fidelity.txt` sha256 2f4aebf786a4b40ecdf93181f02c056b0959330c1faac1fea26ff84b2a889dec) |
+| 2026-11-27 | `lake env leanexport Solution -- Quot Quot.mk Quot.lift Quot.ind EventualAffineTraceResidue.trace_residue_eventually_affine propext Classical.choice Quot.sound Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam` (statement fidelity (Challenge = Solution)) | 0faaeee73a0f | exit code 0: [45761926 bytes, sha256 5b29314303ae12e1190050d5d91e0d4cb981c8ed3a1453224f636079d1997541, kept at /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/fidelity/solution.ndjson] (quote `015-fidelity.txt` sha256 81e977103fa9660d0148f0224d4946557cdb06467ab72d2fbe3f020502c19d59) |
+| 2026-11-27 | `lake env lean --run /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/fidelity/Fidelity.lean /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-9/inv-1-20261126T201347/audit/job/fidelity/fidelity-config.json` (statement fidelity (Challenge = Solution)) | 0faaeee73a0f | exit code 0: {"challenge_constants":7285,"detail":"","fidelity":"EQUAL","records":1,"solution_constants":9944,"stage":"done"} (quote `016-fidelity.txt` sha256 594dfc2a6d7641a5faefefdc6e212850190fca4584c334532ee7945c4721de53) |
+| 2026-11-27 | (no command: the judge's verdict file) (round-9 verdict, per-record axioms) | 0faaeee73a0f | overall RECORDS_PROVED: EventualAffineTraceResidue.trace_residue_eventually_affine: clean, axioms [propext, Classical.choice, Quot.sound] (verdict `round-9.verdict.json` sha256 be857b102351) |
 | 2026-11-26 | `lake build` (lake build) | a0ee65d55862 | exit code 0: Build completed successfully (8966 jobs). (quote `003-lake-build.txt` sha256 bd8c9005c6faa5c5387b2f2a962d21a357cb37f54e7ffffc47164c75eb82683b) |
 | 2026-11-26 | `lake build Challenge EventualAffineTraceResidue EventualAffineTraceResidue.Basic EventualAffineTraceResidue.Plan Solution` (lake build) | a0ee65d55862 | exit code 0: Build completed successfully (8966 jobs). (quote `004-lake-build-modules.txt` sha256 06bdc125071f0eea67c3fa5afdde15ae3ba9017aad656e6c58e5cfc4a906604b) |
 | 2026-11-26 | `lake env lean --json /Users/ben/.cache/conductor/judge-out/2026-11-24_eventual-affine-trace-residue/round-8/inv-1-20261126T111556/audit/job/sweep-solution.lean` (AxiomAudit (axiom sweep)) | a0ee65d55862 | exit code 0: SWEEP 218 constants checked, 0 flagged (quote `005-sweep-solution.txt` sha256 05c319f52b9eedba271a9e380632d1b47fcf7acc0f869f84452c69c319cf9b88) |
@@ -264,8 +284,9 @@ repository yourself, run `lake build` and the comparator configuration `comparat
 - `statement-recon-claim-0003-6` (eventualaffinetraceresidue/20261126T113054_statement-recon-statement-recon-claim-0003-6): transcript sha256 `None`, isolation_mode `instruction-only`, status failed.
 - `statement-recon-claim-0003-7` (eventualaffinetraceresidue/20261126T194930_statement-recon-statement-recon-claim-0003-7): transcript sha256 `None`, isolation_mode `instruction-only`, status failed.
 - `statement-recon-claim-0003-8` (eventualaffinetraceresidue/20261126T201017_statement-recon-statement-recon-claim-0003-8): transcript sha256 `dacb3dc6b87be000`, isolation_mode `instruction-only`, status completed.
+- `statement-recon-claim-0003-9` (eventualaffinetraceresidue/20261126T203947_statement-recon-statement-recon-claim-0003-9): transcript sha256 `96b6bde785fdad2d`, isolation_mode `instruction-only`, status completed.
 
-Comparison of `statement-recon-claim-0003-8` with the statements of record, made at commit `a0ee65d55862` (run `review/recon.json`, transcript sha256 `dacb3dc6b87be000`, statement sha256 `7e6eb118b5a20433`, isolation breach False):
+Comparison of `statement-recon-claim-0003-9` with the statements of record, made at commit `0faaeee73a0f` (run `review/recon.json`, transcript sha256 `96b6bde785fdad2d`, statement sha256 `7e6eb118b5a20433`, isolation breach False):
 - `EventualAffineTraceResidue.trace_residue_eventually_affine`: AGREES
 
 Lean check of the reconstruction's equivalence with the statements of record: NOT RUN (not built in conductor v1; a human compares the statements above with §2).
