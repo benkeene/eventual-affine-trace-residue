@@ -38,7 +38,7 @@ sources:
     authors: ["benkeene"]
     type: "original-proof"
     relationship: other
-    note: "Informal proof of record: docs/PROOF.md, the PROOF.md of the VERIFIED claim packet claim_0003 (sha256 8ee21df964edc699), written and reviewed in the conductor prove pipeline (run 2026-11-24_prove-claim-0003). The claim statement it answers is docs/CLAIM.md (sha256 c9e754024f758250), the CLAIM.md of the same packet."
+    note: "Informal proof of record: docs/PROOF.md, the PROOF.md of the VERIFIED claim packet claim_0003 (sha256 8ee21df964edc699), written by models and reviewed by models in the conductor prove pipeline (run 2026-11-24_prove-claim-0003). The claim statement it answers is docs/CLAIM.md (sha256 c9e754024f758250), the CLAIM.md of the same packet."
 
 related_formalizations: []
 
