@@ -40,7 +40,8 @@ prebuilt `.lake` (`conductor lean lake-clone`), and `./scripts/verify-comparator
 
 ## Who wrote what
 
-Ben Keene designed and ran the pipeline and reviewed CORRESPONDENCE.md. The proofs and records were written by
+Ben Keene designed and ran the pipeline. What a person reviewed, and what no person reviewed, is stated in one
+place: the `review` block of `formalization.yaml`. The proofs and records were written by
 the agents named per declaration in `CORRESPONDENCE.md` §7 ("Provenance"); commits keep their `Co-Authored-By`
 and `Astra-*` trailers. Agent agreement is never treated as evidence; the evidence is the Lean kernel and the
 CI comparator. Decisions of scope, promotion and submission are Ben Keene's.
