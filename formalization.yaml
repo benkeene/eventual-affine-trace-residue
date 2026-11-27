@@ -59,7 +59,7 @@ automation:
 review:
   status: self-assessed
   reviewers:
-    - "Human review: Ben Keene read CORRESPONDENCE.md and checked it against the informal claim (docs/CLAIM.md). He did not review the Lean statements or the proofs. No independent peer review. Automated review (conductor run 2026-11-24_eventual-affine-trace-residue): 8 passes, each an adversary job and a reviewer job by GPT-6 Astra with a response by Claude Opus; latest reviewer verdicts meaning: ACCEPT_WITH_FIXES at commit 0faaeee73a0f; trust: ACCEPT_WITH_FIXES at commit 0faaeee73a0f; isolated statement reconstruction statement-recon-claim-0003-9 compared at commit 0faaeee73a0f: every record AGREES"
+    - "Human review: Ben Keene read CORRESPONDENCE.md and checked it against the informal claim (docs/CLAIM.md). Ben Keene did not review the Lean statements or the proofs. No independent peer review. Automated review (conductor run 2026-11-24_eventual-affine-trace-residue): 8 passes, each an adversary job and a reviewer job by GPT-6 Astra with a response by Claude Opus; latest reviewer verdicts meaning: ACCEPT_WITH_FIXES at commit 0faaeee73a0f; trust: ACCEPT_WITH_FIXES at commit 0faaeee73a0f; isolated statement reconstruction statement-recon-claim-0003-9 compared at commit 0faaeee73a0f: every record AGREES"
   notes: "Self-assessed. The automated passes read the statements of record, the Lean development, CORRESPONDENCE.md and docs/PROOF.md. Their verdicts are advisory, not evidence: the evidence is the Lean kernel and the comparator (CORRESPONDENCE.md §8). Human review is exactly what the reviewers entry states and nothing more."
 
 known_gaps: []
