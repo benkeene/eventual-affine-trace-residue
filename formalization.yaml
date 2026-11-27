@@ -49,7 +49,7 @@ automation:
       framework: "conductor (Claude Code; Codex app-server for GPT-6 Astra)"
       tool_setup: "conductor auto: the statements, definitions and this metadata were drafted by a Claude Opus job with `lake build` feedback in a scratch copy, then compared record by record with an isolated statement reconstruction by GPT-6 Astra before any proof work; proofs by conductor formalize (stream worktrees, lake build feedback, judge, gate)."
       cost:
-        wall_time: "not measured at the bootstrap commit; see the formalize run's SUMMARY.md"
+        wall_time: "about 2.8 hours, the sum over the 49 model jobs of the formalization run from each job's submission to its finish; the informal proof's run and idle time are not counted"
         spend_usd: "subscription-based"
         hardware: "local machine plus API/subscription model access"
       prompting_notes: "Role prompts of conductor/prompts: statement_formalizer, statement_recon, lean_prover, adversary, reviewer."
